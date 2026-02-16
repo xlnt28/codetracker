@@ -1,19 +1,22 @@
-package com.io.codetracker.infrastructure.auth.persistence.converter;
+package com.io.codetracker.common.util;
 
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Component;
 
+
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
+
 @Converter
 @Component
-public class TokenEncryptionConverter implements AttributeConverter<String, String> {
+public class AESEncryptionConverter implements AttributeConverter<String,String>{
 
-    private final TextEncryptor encryptor;
+   private final TextEncryptor encryptor;
 
-    public TokenEncryptionConverter(
+    public AESEncryptionConverter(
             @Value("${encryption.password}") String password,
             @Value("${encryption.salt}") String salt) {
         this.encryptor = Encryptors.text(password, salt);
@@ -30,4 +33,6 @@ public class TokenEncryptionConverter implements AttributeConverter<String, Stri
         if (dbData == null) return null;
         return encryptor.decrypt(dbData);
     }
+
+    
 }
