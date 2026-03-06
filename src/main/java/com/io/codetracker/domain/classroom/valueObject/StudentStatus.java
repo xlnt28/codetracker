@@ -1,7 +1,8 @@
 package com.io.codetracker.domain.classroom.valueObject;
 
-public enum ClassroomStatus {
+public enum StudentStatus {
     ACTIVE,
-    CLOSED,
-    ARCHIVED
+    PENDING,
+    DROPPED,
+    KICKED
 }
