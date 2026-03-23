@@ -2,16 +2,14 @@ package com.io.codetracker.adapter.activity.out.persistence.mapper;
 
 import com.io.codetracker.domain.activity.entity.Activity;
 import com.io.codetracker.infrastructure.activity.persistence.entity.ActivityEntity;
-import com.io.codetracker.infrastructure.classroom.persistence.entity.ClassroomEntity;
 
 public class ActivityMapper {
 
     private ActivityMapper() {}
 
-    public static ActivityEntity toEntity(Activity activity, ClassroomEntity classroomEntity) {
+    public static ActivityEntity toEntity(Activity activity) {
         ActivityEntity entity = new ActivityEntity();
         entity.setActivityId(activity.getActivityId());
-        entity.setClassroomEntity(classroomEntity);
         entity.setTitle(activity.getTitle());
         entity.setDescription(activity.getDescription());
         entity.setDueDate(activity.getDueDate());
@@ -35,5 +33,14 @@ public class ActivityMapper {
                 entity.getCreatedAt(),
                 entity.getUpdatedAt()
         );
+    }
+
+    public static void updateEntity(Activity updatedActivity, ActivityEntity entity) {
+        entity.setTitle(updatedActivity.getTitle());
+        entity.setDescription(updatedActivity.getDescription());
+        entity.setDueDate(updatedActivity.getDueDate());
+        entity.setStatus(updatedActivity.getStatus());
+        entity.setMaxScore(updatedActivity.getMaxScore());
+        entity.setUpdatedAt(updatedActivity.getUpdatedAt());
     }
 }
