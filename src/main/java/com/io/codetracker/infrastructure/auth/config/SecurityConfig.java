@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/oauth/github/authorize",
+                                "/api/users/register",
                                 "/api/oauth/github/callback",
                                 "/api/auth/check",
                                 "/api/auth/refresh/**"
